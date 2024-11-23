@@ -19,7 +19,7 @@ npm run build
 ### Ejecutar todos los retos
 
 ```bash
-npm run start
+npm start
 ```
 
 ## Construido con 🛠️

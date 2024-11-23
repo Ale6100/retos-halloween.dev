@@ -28,23 +28,32 @@ const bestPath = findSafestPath(dream) // Devuelve 7
 `;
 
 function findSafestPath(dream: number[][]) {
-  
+  const ancho = dream[0].length;
+  const alto = dream.length;
 
-  dream.forEach((d, i) => {
-    d.forEach((dj, j) => {
+  let menorPuntuacionPropagada = Array.from({ length: alto }, () => Array(ancho).fill(0));
 
-    })
-  })
+  // Coloco el valor en cada posición, que depende del mmenor valor según si vino desde la izquierda o derecha
+  for (let i = 0; i < alto; i++) {
+    for (let j = 0; j < ancho; j++) {
+      // Coloco los valores de la primer fila
+      if (i === 0) menorPuntuacionPropagada[0][j] = j === 0 ? dream[0][j] : menorPuntuacionPropagada[0][j-1] + dream[0][j];
 
-  return 0
+      // Coloco los vaores de la primera columna
+      else if (j === 0) menorPuntuacionPropagada[i][0] = i === 0 ? dream[i][0] : menorPuntuacionPropagada[i-1][0] + dream[i][0];
+
+      else menorPuntuacionPropagada[i][j] = Math.min(menorPuntuacionPropagada[i-1][j], menorPuntuacionPropagada[i][j-1]) + dream[i][j]
+    }
+  }
+
+  return menorPuntuacionPropagada.at(-1)?.at(-1)
 }
 
 const dream = [
-  [1, 3, 1, 0, 0],
-  [1, 5, 1, 0, 0],
-  [4, 2, 1, 0, 0],
-  [4, 2, 1, 0, 0],
-  [4, 2, 1, 0, 0],
+  [1, 3, 1],
+  [1, 5, 1],
+  [4, 2, 1],
 ]
 
-console.log(findSafestPath(dream)) // 7
+console.log('Reto 3:')
+console.log(findSafestPath(dream), '\n') // 7
