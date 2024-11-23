@@ -2,6 +2,26 @@
 
 Bienvenido! En este repositorio dejo mis resultados de los retos de [halloween.dev](https://www.halloween.dev/)
 
+## Retos
+
+* [Reto 1](/src/reto1.ts)
+* [Reto 2](/src/reto2.ts)
+* Reto 3: En proceso
+
+## Comandos
+
+### Compilar todos los retos
+
+```bash
+npm run build
+```
+
+### Ejecutar todos los retos
+
+```bash
+npm run start
+```
+
 ## Construido con 🛠️
 
 * [TypeScript](https://www.typescriptlang.org/)

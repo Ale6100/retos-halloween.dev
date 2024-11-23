@@ -2,11 +2,14 @@
   "name": "retos-halloween.dev",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "tsc -w",
     "reto1": "node --watch dist/reto1.js",
     "reto2": "node --watch dist/reto2.js",
     "reto3": "node --watch dist/reto3.js",
+    "start": "node dist/app.js",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

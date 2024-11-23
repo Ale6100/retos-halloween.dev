@@ -75,5 +75,6 @@ function battleHorde(zombies: string, humans: string) {
   return puntos + letra;
 }
 
+console.log('Reto 2:')
 console.log(battleHorde('242', '334')) // "2h"
-console.log(battleHorde('444', '282')) // "x"
+console.log(battleHorde('444', '282'), '\n') // "x"

@@ -33,6 +33,7 @@ function createMagicPotion(potions: number[], target: number) {
   return candidatos.toSorted((a, b) => a[1] - b[1])[0]
 }
 
+console.log('Reto 1:')
 console.log(createMagicPotion([4, 5, 6, 2], 8)) // [2, 3]
 console.log(createMagicPotion([1, 2, 3, 4], 9)) // undefined
-console.log(createMagicPotion([1, 2, 3, 4], 5)) // [1, 2]
+console.log(createMagicPotion([1, 2, 3, 4], 5), '\n') // [1, 2]
