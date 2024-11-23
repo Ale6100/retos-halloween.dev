@@ -33,13 +33,13 @@ function findSafestPath(dream: number[][]) {
 
   let menorPuntuacionPropagada = Array.from({ length: alto }, () => Array(ancho).fill(0));
 
-  // Coloco el valor en cada posición, que depende del mmenor valor según si vino desde la izquierda o derecha
+  // Coloco el valor en cada posición, que depende del mmenor valor según si vino desde la izquierda o arriba
   for (let i = 0; i < alto; i++) {
     for (let j = 0; j < ancho; j++) {
       // Coloco los valores de la primer fila
       if (i === 0) menorPuntuacionPropagada[0][j] = j === 0 ? dream[0][j] : menorPuntuacionPropagada[0][j-1] + dream[0][j];
 
-      // Coloco los vaores de la primera columna
+      // Coloco los vaores de la primer columna
       else if (j === 0) menorPuntuacionPropagada[i][0] = i === 0 ? dream[i][0] : menorPuntuacionPropagada[i-1][0] + dream[i][0];
 
       else menorPuntuacionPropagada[i][j] = Math.min(menorPuntuacionPropagada[i-1][j], menorPuntuacionPropagada[i][j-1]) + dream[i][j]
