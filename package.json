@@ -1,0 +1,19 @@
+{
+  "name": "retos-halloween.dev",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "reto1": "node --watch dist/reto1.js",
+    "reto2": "node --watch dist/reto2.js",
+    "reto3": "node --watch dist/reto3.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
