@@ -7,7 +7,8 @@ Bienvenido! En este repositorio dejo mis resultados de los retos de [halloween.d
 * [Reto 1](/src/reto1.ts)
 * [Reto 2](/src/reto2.ts)
 * [Reto 3](/src/reto3.ts)
-* Reto 4: En proceso
+* [Reto 4](/src/reto4.ts)
+* Reto 5: en proceso
 
 ## Comandos
 

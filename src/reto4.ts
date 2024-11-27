@@ -43,13 +43,64 @@ const suspects4 = ['Midudev', 'Midu', 'Madeval']
 findTheKiller(whisper4, suspects4); // -> ''
 `
 
-function findTheKiller(whisper, suspects) {
-  // Code here
-  return ''
+function findTheKiller(whisper: string, suspects: string[]) {
+  const palabra1OcultaEn2 = (palabra1: string, palabra2: string) => {
+    palabra1 = palabra1.toLocaleLowerCase();
+    palabra2 = palabra2.toLocaleLowerCase();
+
+    if (palabra1.length > palabra2.length) return false;
+
+    for (let i = 0; i < palabra1.length; i++) {
+      const letraPalabra1 = palabra1[i];
+      const letraPalabra2 = palabra2[i];
+
+      if (letraPalabra1 !== '~' && letraPalabra1 !== letraPalabra2) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  let res: string[] = [];
+  let tempWhisper = whisper;
+
+  suspects.forEach(suspect => {
+    let encontrado = true;
+
+    if (whisper.endsWith('$') && whisper.length - 1 < suspect.length) {
+      encontrado = false;
+    }
+
+    if (whisper.endsWith('$')) {
+      tempWhisper = whisper.slice(0, whisper.length - 1)
+    }
+
+    if (encontrado && !palabra1OcultaEn2(tempWhisper, suspect)) {
+      encontrado = false;
+    }
+
+    if (encontrado) {
+      res.push(suspect);
+    }
+  })
+
+  return res.join(',');
 }
 
+console.log('Reto 4:')
 const whisper = 'd~~~~~a';
 const suspects = ['Dracula', 'Freddy Krueger', 'Jason Voorhees', 'Michael Myers'];
+console.log(findTheKiller(whisper, suspects), '\n'); // -> 'Dracula'
 
-console.log('Reto 4:')
-console.log(findTheKiller(whisper, suspects), '\n') // -> 'Dracula'
+const whisper2 = '~r~dd~';
+const suspects2 = ['Freddy', 'Freddier', 'Fredderic']
+console.log(findTheKiller(whisper2, suspects2), '\n'); // -> 'Freddy,Freddier,Fredderic'
+
+const whisper3 = '~r~dd$';
+const suspects3 = ['Freddy', 'Freddier', 'Fredderic']
+console.log(findTheKiller(whisper3, suspects3), '\n'); // -> ''
+
+const whisper4 = 'mi~~def';
+const suspects4 = ['Midudev', 'Midu', 'Madeval']
+console.log(findTheKiller(whisper4, suspects4), '\n'); // -> ''

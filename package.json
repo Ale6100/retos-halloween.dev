@@ -9,6 +9,7 @@
     "reto2": "node --watch dist/reto2.js",
     "reto3": "node --watch dist/reto3.js",
     "reto4": "node --watch dist/reto4.js",
+    "reto5": "node --watch dist/reto5.js",
     "start": "node dist/app.js",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
