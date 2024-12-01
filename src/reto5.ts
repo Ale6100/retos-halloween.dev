@@ -40,9 +40,78 @@ escapePyramidHead(room3) // -> -1
 `
 
 function escapePyramidHead(room: string[][]) {
-  // Code here
-  return 0
+  type TypeCasillero = '▲' | 'T' | '#' | '.'
+  type TypeUbicacion = { fila: number, columna: number };
+  const alto = room.length;
+  const ancho = room[0].length;
+  const roomValues: number[][] = room.map(row => row.map(() => Infinity));
+
+  const ubicacionActual = (elementoEsperado: TypeCasillero) => {
+    let res = { fila: 0, columna: 0 }
+    room.forEach((fila, i) => {
+      fila.forEach((casillero, j) => {
+        if (casillero === elementoEsperado) {
+          res = {
+            fila: i,
+            columna: j
+          }
+        }
+      })
+    })
+    return res;
+  }
+
+  const movimientosPosibles = (posicion: TypeUbicacion, nextValue: number) => {
+    const { fila, columna } = posicion;
+    const movimientos = []
+
+    if (fila !== 0 && room[fila-1][columna] !== '#' && nextValue < roomValues[fila-1][columna]) movimientos.push('Arriba')
+    if (columna !== ancho-1 && room[fila][columna+1] !== '#' && nextValue < roomValues[fila][columna+1]) movimientos.push('Derecha')
+    if (fila !== alto-1 && room[fila+1][columna] !== '#' && nextValue < roomValues[fila+1][columna]) movimientos.push('Abajo')
+    if (columna !== 0 && room[fila][columna-1] !== '#' && nextValue < roomValues[fila][columna-1]) movimientos.push('Izquierda')
+    return movimientos
+  }
+
+  let posicion = ubicacionActual('T')
+  let posicionPyramidHead = ubicacionActual('▲');
+
+  const analizarAlrededor = (posicion: TypeUbicacion) => {
+    const { fila, columna } = posicion;
+    let actualValue = roomValues[fila][columna];
+    let nextValue = actualValue+1
+
+    movimientosPosibles(posicion, nextValue).forEach(movimiento => {
+      if (movimiento === 'Arriba') {
+        if (nextValue < roomValues[fila-1][columna]) {
+          roomValues[fila-1][columna] = nextValue;
+          analizarAlrededor({ fila: fila-1, columna: columna })
+        }
+      } else if (movimiento === 'Derecha') {
+        if (nextValue < roomValues[fila][columna+1]) {
+          roomValues[fila][columna+1] = nextValue;
+          analizarAlrededor({ fila: fila, columna: columna+1 })
+        }
+      } else if (movimiento === 'Abajo') {
+        if (nextValue < roomValues[fila+1][columna]) {
+          roomValues[fila+1][columna] = nextValue;
+          analizarAlrededor({ fila: fila+1, columna: columna })
+        }
+      } else if (movimiento === 'Izquierda') {
+        if (nextValue < roomValues[fila][columna-1]) {
+          roomValues[fila][columna-1] = nextValue;
+          analizarAlrededor({ fila: fila, columna: columna-1 })
+        }
+      }
+    })
+  }
+
+  roomValues[posicion.fila][posicion.columna] = 0;
+  analizarAlrededor(posicion)
+  const movimientos = roomValues[posicionPyramidHead.fila][posicionPyramidHead.columna];
+  return movimientos === Infinity ? -1 : movimientos
 }
+
+console.log('Reto 5:')
 
 const room = [
   ['.', '.', '#', '.', '▲'],
@@ -53,3 +122,20 @@ const room = [
 ]
 
 console.log(escapePyramidHead(room)) // -> 8
+
+const room2 = [
+  ['T', '.', '#', '.'],
+  ['.', '.', '.', '.'],
+  ['▲', '.', '.', '#'],
+  ['.', '#', '#', '#'],
+]
+
+console.log(escapePyramidHead(room2)) // -> 2
+
+const room3 = [
+  ['#', '#', '#'],
+  ['▲', '.', '#'],
+  ['.', '#', 'T'],
+]
+
+console.log(escapePyramidHead(room3)) // -> -1
