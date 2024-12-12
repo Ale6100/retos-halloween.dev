@@ -47,18 +47,9 @@ function escapePyramidHead(room: string[][]) {
   const roomValues: number[][] = room.map(row => row.map(() => Infinity));
 
   const ubicacionActual = (elementoEsperado: TypeCasillero) => {
-    let res = { fila: 0, columna: 0 }
-    room.forEach((fila, i) => {
-      fila.forEach((casillero, j) => {
-        if (casillero === elementoEsperado) {
-          res = {
-            fila: i,
-            columna: j
-          }
-        }
-      })
-    })
-    return res;
+    const fila = room.findIndex(fila => fila.includes(elementoEsperado));
+    const columna = room[fila].indexOf(elementoEsperado);
+    return { fila, columna }
   }
 
   const movimientosPosibles = (posicion: TypeUbicacion, nextValue: number) => {

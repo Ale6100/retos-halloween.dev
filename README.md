@@ -4,11 +4,13 @@ Bienvenido! En este repositorio dejo mis resultados de los retos de [halloween.d
 
 ## Retos
 
-* [Reto 1](/src/reto1.ts)
-* [Reto 2](/src/reto2.ts)
-* [Reto 3](/src/reto3.ts)
-* [Reto 4](/src/reto4.ts)
-* [Reto 5](/src/reto5.ts)
+| **Reto** | **Código** | **Enlace Web** |
+|:--------:|:----------:|:--------------:|
+| 01 | [createMagicPotion](/src/reto1.ts) | [🔗](https://www.halloween.dev/es/retos/2024/1) |
+| 02 | [battleHorde](/src/reto2.ts) | [🔗](https://www.halloween.dev/es/retos/2024/2) |
+| 03 | [findSafestPath](/src/reto3.ts) | [🔗](https://www.halloween.dev/es/retos/2024/3) |
+| 04 | [findTheKiller](/src/reto4.ts) | [🔗](https://www.halloween.dev/es/retos/2024/4) |
+| 05 | [escapePyramidHead](/src/reto5.ts) | [🔗](https://www.halloween.dev/es/retos/2024/5) |
 
 ## Comandos
 
